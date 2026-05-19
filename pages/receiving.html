@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Penerimaan Material | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-receiving-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Penerimaan Material"
+          data-subtitle="Pencatatan incoming scrap impor, verifikasi PIB, dan kontrol area karantina"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Daftar Penerimaan</h2>
+                <p class="panel-caption">Filter lot berdasarkan jenis material, supplier, status, tanggal, atau nomor dokumen</p>
+              </div>
+              <div class="detail-actions">
+                <span class="status-badge" data-receiving-count>0 lot</span>
+                <button class="button button-primary" type="button" data-open-modal="#modal-new-receiving">Tambah Penerimaan Baru</button>
+              </div>
+            </div>
+
+            <div class="filter-bar">
+              <label class="form-field" for="filter-material">
+                <span class="form-label">Jenis Material</span>
+                <select class="select" id="filter-material" data-filter-material data-receiving-filter></select>
+              </label>
+              <label class="form-field" for="filter-supplier">
+                <span class="form-label">Supplier</span>
+                <select class="select" id="filter-supplier" data-filter-supplier data-receiving-filter></select>
+              </label>
+              <label class="form-field" for="filter-status">
+                <span class="form-label">Status</span>
+                <select class="select" id="filter-status" data-filter-status data-receiving-filter>
+                  <option value="">Semua Status</option>
+                  <option value="Menunggu Pemilahan">Menunggu Pemilahan</option>
+                  <option value="Sudah Dipilah">Sudah Dipilah</option>
+                  <option value="Selisih Terdeteksi">Selisih Terdeteksi</option>
+                </select>
+              </label>
+              <label class="form-field" for="filter-date">
+                <span class="form-label">Tanggal</span>
+                <input class="input" id="filter-date" type="date" data-filter-date data-receiving-filter>
+              </label>
+              <label class="form-field" for="filter-search">
+                <span class="form-label">Search</span>
+                <input class="input" id="filter-search" type="search" placeholder="Lot, PIB, supplier" data-filter-search data-receiving-filter>
+              </label>
+              <button class="button button-secondary" type="button" data-reset-receiving-filters>Reset</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Lot</th>
+                    <th>No. PIB</th>
+                    <th>Jenis Material</th>
+                    <th>Supplier</th>
+                    <th>Tgl Terima</th>
+                    <th class="text-right">Berat PIB</th>
+                    <th class="text-right">Berat Aktual</th>
+                    <th class="text-right">Selisih</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-receiving-table></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-new-receiving">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h2 class="modal-title">Tambah Penerimaan Baru</h2>
+          <button class="button button-secondary button-sm" type="button" data-close-modal="#modal-new-receiving">Tutup</button>
+        </div>
+        <form data-new-receiving-form>
+          <div class="modal-body">
+            <div class="form-grid">
+              <label class="form-field" for="new-pib-no">
+                <span class="form-label">No. PIB <span class="required">*</span></span>
+                <input class="input" id="new-pib-no" name="pibNo" value="PIB-2025-00105" required>
+              </label>
+              <label class="form-field" for="new-supplier">
+                <span class="form-label">Supplier <span class="required">*</span></span>
+                <select class="select" id="new-supplier" name="supplier" data-new-supplier required></select>
+              </label>
+              <label class="form-field" for="new-material">
+                <span class="form-label">Jenis Material <span class="required">*</span></span>
+                <select class="select" id="new-material" name="material" data-new-material required></select>
+              </label>
+              <label class="form-field" for="new-date-in">
+                <span class="form-label">Tanggal & Jam Kedatangan <span class="required">*</span></span>
+                <input class="input" id="new-date-in" name="dateIn" type="datetime-local" value="2025-05-19T09:30" required>
+              </label>
+              <label class="form-field" for="new-weight-pib">
+                <span class="form-label">Berat Sesuai PIB/Invoice (kg) <span class="required">*</span></span>
+                <input class="input" id="new-weight-pib" name="weightPIB" type="number" min="0" step="1" value="7200" data-new-weight-pib required>
+              </label>
+              <label class="form-field" for="new-weight-actual">
+                <span class="form-label">Berat Aktual Timbang (kg) <span class="required">*</span></span>
+                <input class="input" id="new-weight-actual" name="weightActual" type="number" min="0" step="1" value="7188" data-new-weight-actual required>
+              </label>
+              <label class="form-field" for="new-surat-jalan">
+                <span class="form-label">Nomor Surat Jalan Supplier</span>
+                <input class="input" id="new-surat-jalan" name="suratJalan" value="SJ-DEMO-0519-02">
+              </label>
+              <div class="form-field">
+                <span class="form-label">Selisih Otomatis</span>
+                <div class="input" style="display: flex; align-items: center;" data-new-diff-preview></div>
+              </div>
+              <label class="form-field full" for="new-notes">
+                <span class="form-label">Catatan</span>
+                <textarea class="textarea" id="new-notes" name="notes" placeholder="Opsional"></textarea>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="button button-secondary" type="button" data-close-modal="#modal-new-receiving">Batal</button>
+            <button class="button button-primary" type="submit">Simpan Penerimaan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

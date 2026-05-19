@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-dashboard-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Dashboard Operasional"
+          data-subtitle="Ringkasan harian penerimaan, peleburan, ekspor, dan rekonsiliasi material"
+        ></div>
+
+        <section class="content content-grid">
+          <div class="grid-5" data-dashboard-metrics></div>
+
+          <div class="dashboard-strip">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">Material Masuk vs Output Ingot</h2>
+                  <p class="panel-caption">Perbandingan 7 hari terakhir dalam ton</p>
+                </div>
+              </div>
+              <div class="chart-box">
+                <canvas id="chart-material-flow" aria-label="Grafik material masuk dan output ingot"></canvas>
+              </div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2 class="panel-title">Komposisi Produksi Bulan Ini</h2>
+                  <p class="panel-caption">Distribusi output ingot berdasarkan alloy</p>
+                </div>
+              </div>
+              <div class="chart-box">
+                <canvas id="chart-production-mix" aria-label="Grafik komposisi produksi"></canvas>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Penerimaan Terkini</h2>
+                <p class="panel-caption">Lot bahan baku terakhir yang masuk ke area penerimaan dan karantina</p>
+              </div>
+              <a class="button button-secondary button-sm" href="receiving.html">Buka Modul Penerimaan</a>
+            </div>
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Lot</th>
+                    <th>Jenis Material</th>
+                    <th>Supplier</th>
+                    <th>Tgl Masuk</th>
+                    <th class="text-right">Berat</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-recent-receiving></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Heat Log Terkini</h2>
+                <p class="panel-caption">Status peleburan, output ingot, dan yield terhadap standar SOP</p>
+              </div>
+              <a class="button button-secondary button-sm" href="heat-log.html">Buka Heat Log</a>
+            </div>
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Heat</th>
+                    <th>Jenis Produk</th>
+                    <th class="text-right">Input BB</th>
+                    <th class="text-right">Output Ingot</th>
+                    <th class="text-right">Yield</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-recent-heats></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Rekonsiliasi Bulan Ini</h2>
+                <p class="panel-caption">Mini summary LMB Mei 2025 sebelum masuk laporan 6 seksi A-F</p>
+              </div>
+            </div>
+            <div data-reconciliation-widget></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

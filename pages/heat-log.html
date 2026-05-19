@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Heat Log | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-heat-log-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Heat Log Peleburan"
+          data-subtitle="Kontrol siklus peleburan, input bahan baku, output ingot, slag, dan yield"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Daftar Heat</h2>
+                <p class="panel-caption">Filter heat berdasarkan produk, status, tanggal, atau nomor heat</p>
+              </div>
+              <div class="detail-actions">
+                <span class="status-badge" data-heat-count>0 heat</span>
+                <button class="button button-primary" type="button" data-open-modal="#modal-new-heat">Buat Heat Baru</button>
+              </div>
+            </div>
+
+            <div class="filter-bar">
+              <label class="form-field" for="filter-product">
+                <span class="form-label">Jenis Produk</span>
+                <select class="select" id="filter-product" data-filter-product data-heat-filter></select>
+              </label>
+              <label class="form-field" for="filter-heat-status">
+                <span class="form-label">Status</span>
+                <select class="select" id="filter-heat-status" data-filter-heat-status data-heat-filter>
+                  <option value="">Semua Status</option>
+                  <option value="Dalam Proses">Dalam Proses</option>
+                  <option value="Selesai - Yield OK">Selesai - Yield OK</option>
+                  <option value="Selesai - Yield Rendah">Selesai - Yield Rendah</option>
+                </select>
+              </label>
+              <label class="form-field" for="filter-heat-date">
+                <span class="form-label">Tanggal</span>
+                <input class="input" id="filter-heat-date" type="date" data-filter-heat-date data-heat-filter>
+              </label>
+              <label class="form-field" for="filter-heat-search">
+                <span class="form-label">Search</span>
+                <input class="input" id="filter-heat-search" type="search" placeholder="Heat, operator, shift" data-filter-heat-search data-heat-filter>
+              </label>
+              <div></div>
+              <button class="button button-secondary" type="button" data-reset-heat-filters>Reset</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Heat</th>
+                    <th>Tanggal</th>
+                    <th>Jenis Produk</th>
+                    <th class="text-right">Input BB</th>
+                    <th class="text-right">Output Ingot</th>
+                    <th class="text-right">Slag</th>
+                    <th class="text-right">Yield</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-heat-table></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-new-heat">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h2 class="modal-title">Buat Heat Baru</h2>
+          <button class="button button-secondary button-sm" type="button" data-close-modal="#modal-new-heat">Tutup</button>
+        </div>
+        <form data-new-heat-form>
+          <div class="modal-body">
+            <div class="form-grid">
+              <label class="form-field" for="new-heat-product">
+                <span class="form-label">Jenis Produk Target <span class="required">*</span></span>
+                <select class="select" id="new-heat-product" name="product" data-new-heat-product required></select>
+              </label>
+              <label class="form-field" for="new-heat-date">
+                <span class="form-label">Tanggal & Waktu Mulai <span class="required">*</span></span>
+                <input class="input" id="new-heat-date" name="dateStart" type="datetime-local" value="2025-05-19T10:00" required>
+              </label>
+              <label class="form-field full" for="new-heat-lots">
+                <span class="form-label">Nomor Lot BB Digunakan <span class="required">*</span></span>
+                <select class="select" id="new-heat-lots" name="lots" data-new-heat-lots multiple size="6" required></select>
+              </label>
+              <label class="form-field" for="new-heat-input">
+                <span class="form-label">Berat Input BB (kg) <span class="required">*</span></span>
+                <input class="input" id="new-heat-input" name="inputKg" type="number" min="0" step="1" value="0" data-new-heat-input required>
+              </label>
+              <div class="form-field">
+                <span class="form-label">Preview Lot</span>
+                <div class="input" style="display: flex; align-items: center;" data-new-heat-preview></div>
+              </div>
+              <label class="form-field" for="new-heat-operator">
+                <span class="form-label">Operator Tungku <span class="required">*</span></span>
+                <input class="input" id="new-heat-operator" name="operator" value="Joko P." required>
+              </label>
+              <label class="form-field" for="new-heat-shift">
+                <span class="form-label">Kepala Shift <span class="required">*</span></span>
+                <input class="input" id="new-heat-shift" name="shiftLead" value="Sutrisno" required>
+              </label>
+              <label class="form-field full" for="new-heat-notes">
+                <span class="form-label">Catatan</span>
+                <textarea class="textarea" id="new-heat-notes" name="notes" placeholder="Opsional"></textarea>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="button button-secondary" type="button" data-close-modal="#modal-new-heat">Batal</button>
+            <button class="button button-primary" type="submit">Mulai Heat</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

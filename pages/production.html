@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Produksi | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-production-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Pencetakan & Inspeksi"
+          data-subtitle="Pencatatan hasil cetak ingot, reject, returns, inspeksi visual, dan label batch"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Hasil Pencetakan Ingot</h2>
+                <p class="panel-caption">Output produksi dari heat log dan status inspeksi visual QC</p>
+              </div>
+              <span class="status-badge" data-production-count>0 heat</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Heat</th>
+                    <th>Jenis</th>
+                    <th class="text-right">Jumlah Pieces</th>
+                    <th class="text-right">Berat Total</th>
+                    <th>Hasil Inspeksi</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-production-table></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-production-result">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h2 class="modal-title">Input Hasil Pencetakan</h2>
+          <button class="button button-secondary button-sm" type="button" data-close-modal="#modal-production-result">Tutup</button>
+        </div>
+        <form data-production-form>
+          <div class="modal-body">
+            <div class="dashboard-alert" style="margin-bottom: 14px;">
+              <span data-prod-heat-label>Heat belum dipilih</span>
+              <span>Update stok FG setelah disimpan</span>
+            </div>
+            <input type="hidden" data-prod-heat-no>
+            <div class="form-grid">
+              <label class="form-field" for="prod-pieces">
+                <span class="form-label">Jumlah Pieces Ingot</span>
+                <input class="input" id="prod-pieces" type="number" min="0" step="1" data-prod-pieces required>
+              </label>
+              <label class="form-field" for="prod-output">
+                <span class="form-label">Berat Total Ingot (kg)</span>
+                <input class="input" id="prod-output" type="number" min="0" step="1" data-prod-output required>
+              </label>
+              <label class="form-field" for="prod-reject">
+                <span class="form-label">Berat Ingot Reject (kg)</span>
+                <input class="input" id="prod-reject" type="number" min="0" step="1" data-prod-reject required>
+              </label>
+              <label class="form-field" for="prod-returns">
+                <span class="form-label">Berat Returns/Sisa (kg)</span>
+                <input class="input" id="prod-returns" type="number" min="0" step="1" data-prod-returns required>
+              </label>
+              <label class="form-field" for="prod-inspection">
+                <span class="form-label">Hasil Inspeksi Visual</span>
+                <select class="select" id="prod-inspection" data-prod-inspection>
+                  <option value="OK">OK</option>
+                  <option value="Ada Cacat Minor">Ada Cacat Minor</option>
+                  <option value="Ada Cacat Mayor">Ada Cacat Mayor</option>
+                </select>
+              </label>
+              <label class="form-field" for="prod-batch">
+                <span class="form-label">Label Batch</span>
+                <input class="input" id="prod-batch" data-prod-batch required>
+              </label>
+              <label class="form-field full" for="prod-notes">
+                <span class="form-label">Catatan Cacat</span>
+                <textarea class="textarea" id="prod-notes" placeholder="Isi jika ada cacat minor/mayor"></textarea>
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="button button-secondary" type="button" data-close-modal="#modal-production-result">Batal</button>
+            <button class="button button-primary" type="submit">Simpan & Update Stok FG</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

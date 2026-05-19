@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audit Trail | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-audit-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Audit Trail"
+          data-subtitle="Log aktivitas sistem untuk transparansi operasional dan kebutuhan auditor"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Ringkasan Aktivitas</h2>
+                <p class="panel-caption">Jumlah aktivitas berdasarkan kategori proses</p>
+              </div>
+            </div>
+            <div class="lmb-summary-grid" data-audit-counters></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Log Aktivitas Sistem</h2>
+                <p class="panel-caption">Semua perubahan operasional yang tercatat dalam prototype</p>
+              </div>
+              <span class="status-badge" data-audit-count>0 aktivitas</span>
+            </div>
+
+            <div class="tabs" style="margin-bottom: 16px;">
+              <button class="tab-button active" type="button" data-audit-tab="all">Semua Aktivitas</button>
+              <button class="tab-button" type="button" data-audit-tab="receiving">Penerimaan</button>
+              <button class="tab-button" type="button" data-audit-tab="production">Produksi</button>
+              <button class="tab-button" type="button" data-audit-tab="export">Ekspor</button>
+              <button class="tab-button" type="button" data-audit-tab="reconciliation">Rekonsiliasi</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Aktivitas</th>
+                    <th>Referensi Dokumen</th>
+                    <th>Dilakukan Oleh</th>
+                    <th>Detail</th>
+                  </tr>
+                </thead>
+                <tbody data-audit-table></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

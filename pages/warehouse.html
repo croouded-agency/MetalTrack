@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gudang | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-warehouse-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Gudang Material"
+          data-subtitle="Saldo bahan baku, produk jadi, dan slag/by-product berdasarkan mutasi bulan berjalan"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Kartu Stok</h2>
+                <p class="panel-caption">Tab gudang bahan baku, produk jadi, dan slag</p>
+              </div>
+              <div class="tabs" data-tabs="warehouse">
+                <button class="tab-button active" type="button" data-tab-target="bb">Gudang Bahan Baku</button>
+                <button class="tab-button" type="button" data-tab-target="fg">Gudang Produk Jadi</button>
+                <button class="tab-button" type="button" data-tab-target="slag">Slag & By-product</button>
+              </div>
+            </div>
+
+            <div data-tab-panel="warehouse" data-panel-name="bb">
+              <div class="grid-4" data-warehouse-bb-cards></div>
+              <div class="panel-header" style="margin-top: 18px;">
+                <div>
+                  <h2 class="panel-title">Mutasi BB Terbaru</h2>
+                  <p class="panel-caption">10 baris terakhir dari hasil pemilahan</p>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table-data">
+                  <thead>
+                    <tr>
+                      <th>Tanggal</th>
+                      <th>No. Lot</th>
+                      <th>Material Asal</th>
+                      <th class="text-right">Berat Masuk</th>
+                      <th>Operator</th>
+                    </tr>
+                  </thead>
+                  <tbody data-warehouse-bb-table></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div data-tab-panel="warehouse" data-panel-name="fg" hidden>
+              <div class="grid-3" data-warehouse-fg-cards></div>
+              <div class="panel-header" style="margin-top: 18px;">
+                <div>
+                  <h2 class="panel-title">Mutasi FG Terbaru</h2>
+                  <p class="panel-caption">Output ingot dari heat yang sudah selesai</p>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table-data">
+                  <thead>
+                    <tr>
+                      <th>Tanggal</th>
+                      <th>No. Heat</th>
+                      <th>Produk</th>
+                      <th class="text-right">Berat Masuk FG</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody data-warehouse-fg-table></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div data-tab-panel="warehouse" data-panel-name="slag" hidden>
+              <div class="grid-2" data-warehouse-slag-cards></div>
+              <div class="panel-header" style="margin-top: 18px;">
+                <div>
+                  <h2 class="panel-title">Log Slag</h2>
+                  <p class="panel-caption">Residue/by-product dari proses peleburan</p>
+                </div>
+              </div>
+              <div class="table-wrap">
+                <table class="table-data">
+                  <thead>
+                    <tr>
+                      <th>Tanggal</th>
+                      <th>Sumber Heat</th>
+                      <th class="text-right">Berat Slag</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody data-warehouse-slag-table></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

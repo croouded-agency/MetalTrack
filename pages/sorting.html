@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pemilahan Material | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-sorting-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Pemilahan & Penimbangan"
+          data-subtitle="Input hasil pemilahan scrap per kategori dan update kartu stok gudang bahan baku"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Menunggu Pemilahan</h2>
+                <p class="panel-caption">Lot dari area karantina yang belum masuk kartu stok gudang BB</p>
+              </div>
+              <span class="status-badge" data-sorting-count>0 lot menunggu</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Lot</th>
+                    <th>Supplier</th>
+                    <th>Tgl Terima</th>
+                    <th class="text-right">Berat Total</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-sorting-table></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Kartu Stok Gudang BB</h2>
+                <p class="panel-caption">Preview saldo setelah pemilahan tersimpan</p>
+              </div>
+            </div>
+            <div class="grid-4" data-sorting-stock-preview></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-sorting-result">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h2 class="modal-title">Input Hasil Pemilahan</h2>
+          <button class="button button-secondary button-sm" type="button" data-close-modal="#modal-sorting-result">Tutup</button>
+        </div>
+        <form data-sorting-form>
+          <div class="modal-body">
+            <div class="dashboard-alert" style="margin-bottom: 14px;">
+              <span data-sort-lot-label>Lot belum dipilih</span>
+              <span>Toleransi selisih pemilahan 0,5%</span>
+            </div>
+            <input type="hidden" data-sort-lot-no>
+            <input type="hidden" data-sort-weight-in>
+            <div class="form-grid">
+              <label class="form-field" for="sort-sc-cu">
+                <span class="form-label">Scrap Tembaga (SC-CU)</span>
+                <input class="input" id="sort-sc-cu" type="number" min="0" step="1" value="0" data-sort-sc-cu>
+              </label>
+              <label class="form-field" for="sort-sc-br">
+                <span class="form-label">Scrap Kuningan (SC-BR)</span>
+                <input class="input" id="sort-sc-br" type="number" min="0" step="1" value="0" data-sort-sc-br>
+              </label>
+              <label class="form-field" for="sort-sc-bz">
+                <span class="form-label">Scrap Perunggu (SC-BZ)</span>
+                <input class="input" id="sort-sc-bz" type="number" min="0" step="1" value="0" data-sort-sc-bz>
+              </label>
+              <label class="form-field" for="sort-sc-mx">
+                <span class="form-label">Scrap Campuran (SC-MX)</span>
+                <input class="input" id="sort-sc-mx" type="number" min="0" step="1" value="0" data-sort-sc-mx>
+              </label>
+              <label class="form-field" for="sort-contaminant">
+                <span class="form-label">Berat Kontaminan</span>
+                <input class="input" id="sort-contaminant" type="number" min="0" step="1" value="0" data-sort-contaminant>
+              </label>
+              <label class="form-field" for="sort-operator">
+                <span class="form-label">Operator</span>
+                <input class="input" id="sort-operator" value="Maya Sari" data-sort-operator required>
+              </label>
+              <label class="form-field" for="sort-date">
+                <span class="form-label">Tanggal & Jam</span>
+                <input class="input" id="sort-date" type="datetime-local" value="2025-05-19T11:00" data-sort-date required>
+              </label>
+              <label class="form-field full" for="sort-notes">
+                <span class="form-label">Catatan</span>
+                <textarea class="textarea" id="sort-notes" placeholder="Opsional"></textarea>
+              </label>
+            </div>
+            <div data-sorting-preview></div>
+          </div>
+          <div class="modal-footer">
+            <button class="button button-secondary" type="button" data-close-modal="#modal-sorting-result">Batal</button>
+            <button class="button button-primary" type="submit">Simpan Hasil Pemilahan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

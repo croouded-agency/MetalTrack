@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ekspor | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-export-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Pengiriman & Ekspor"
+          data-subtitle="Pencatatan DO, PEB, final weighing, kontainer, seal, dan pengurangan stok FG"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Stok FG Siap Ekspor</h2>
+                <p class="panel-caption">Saldo produk jadi setelah produksi dan ekspor bulan berjalan</p>
+              </div>
+              <button class="button button-primary" type="button" data-open-modal="#modal-new-export">Input Pengiriman Ekspor</button>
+            </div>
+            <div class="grid-3" data-export-stock-summary></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Riwayat Ekspor</h2>
+                <p class="panel-caption">Delivery Order dan dokumen PEB yang sudah atau siap dikirim</p>
+              </div>
+              <span class="status-badge" data-export-count>0 DO</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. DO</th>
+                    <th>No. PEB</th>
+                    <th>Customer</th>
+                    <th>Jenis Ingot</th>
+                    <th class="text-right">Berat</th>
+                    <th>Tgl Kirim</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-export-table></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-new-export">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div class="modal-header">
+          <h2 class="modal-title">Input Pengiriman Ekspor</h2>
+          <button class="button button-secondary button-sm" type="button" data-close-modal="#modal-new-export">Tutup</button>
+        </div>
+        <form data-export-form>
+          <div class="modal-body">
+            <div class="form-grid">
+              <label class="form-field" for="export-customer">
+                <span class="form-label">Customer <span class="required">*</span></span>
+                <select class="select" id="export-customer" name="customer" data-export-customer required></select>
+              </label>
+              <label class="form-field" for="export-po">
+                <span class="form-label">Nomor PO Customer</span>
+                <input class="input" id="export-po" name="poNo" value="PO-TW-2025-0519">
+              </label>
+              <label class="form-field" for="export-peb">
+                <span class="form-label">Nomor PEB <span class="required">*</span></span>
+                <input class="input" id="export-peb" name="pebNo" value="PEB-2025-00142" required>
+              </label>
+              <label class="form-field" for="export-product">
+                <span class="form-label">Jenis Ingot <span class="required">*</span></span>
+                <select class="select" id="export-product" name="product" data-export-product required></select>
+              </label>
+              <label class="form-field" for="export-weight-peb">
+                <span class="form-label">Berat Sesuai PEB (kg) <span class="required">*</span></span>
+                <input class="input" id="export-weight-peb" name="weightPEB" type="number" min="0" step="1" value="4200" data-export-weight-peb required>
+              </label>
+              <label class="form-field" for="export-weight-final">
+                <span class="form-label">Berat Final Timbang (kg) <span class="required">*</span></span>
+                <input class="input" id="export-weight-final" name="weightFinal" type="number" min="0" step="1" value="4192" data-export-weight-final required>
+              </label>
+              <label class="form-field" for="export-container">
+                <span class="form-label">Nomor Kontainer</span>
+                <input class="input" id="export-container" name="containerNo" value="TLLU-771204-5">
+              </label>
+              <label class="form-field" for="export-seal">
+                <span class="form-label">Nomor Seal</span>
+                <input class="input" id="export-seal" name="sealNo" value="FNM-887430">
+              </label>
+              <label class="form-field" for="export-date">
+                <span class="form-label">Tanggal Pengiriman</span>
+                <input class="input" id="export-date" name="dateShip" type="date" value="2025-05-19">
+              </label>
+              <div class="form-field">
+                <span class="form-label">Selisih Timbang</span>
+                <div class="input" style="display: flex; align-items: center;" data-export-diff-preview></div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="button button-secondary" type="button" data-close-modal="#modal-new-export">Batal</button>
+            <button class="button button-primary" type="submit">Simpan & Kurangi Stok FG</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

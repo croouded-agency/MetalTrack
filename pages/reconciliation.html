@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rekonsiliasi LMB | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-reconciliation-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Rekonsiliasi & LMB Bulanan"
+          data-subtitle="Laporan Mutasi Barang format 6 seksi A-F untuk kebutuhan audit Kawasan Berikat"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel no-print">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Generate LMB</h2>
+                <p class="panel-caption">Periode demo dikunci ke Mei 2025 agar angka konsisten dengan seed data</p>
+              </div>
+              <div class="detail-actions">
+                <button class="button button-secondary" type="button" data-export-sim="pdf">Export PDF</button>
+                <button class="button button-secondary" type="button" data-export-sim="excel">Export Excel</button>
+                <button class="button button-primary" type="button" data-export-sim="print">Cetak</button>
+              </div>
+            </div>
+            <div class="filter-bar">
+              <label class="form-field" for="lmb-month">
+                <span class="form-label">Bulan</span>
+                <select class="select" id="lmb-month">
+                  <option selected>Mei</option>
+                </select>
+              </label>
+              <label class="form-field" for="lmb-year">
+                <span class="form-label">Tahun</span>
+                <select class="select" id="lmb-year">
+                  <option selected>2025</option>
+                </select>
+              </label>
+              <button class="button button-primary" type="button" data-generate-lmb>Generate LMB</button>
+            </div>
+          </section>
+
+          <div data-lmb-document></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

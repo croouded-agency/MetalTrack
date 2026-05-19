@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Selisih | Freemont MetalTrack</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+  </head>
+  <body data-discrepancy-page>
+    <div class="app-shell">
+      <div data-layout-sidebar></div>
+
+      <main class="main-area">
+        <div
+          data-layout-topbar
+          data-title="Penanganan Selisih"
+          data-subtitle="Daftar kasus ketidaksesuaian timbang, pemilahan, yield, dan stock opname"
+        ></div>
+
+        <section class="content content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2 class="panel-title">Daftar Kasus Selisih</h2>
+                <p class="panel-caption">Filter kasus berdasarkan jenis, status, dan tanggal deteksi</p>
+              </div>
+              <span class="status-badge" data-discrepancy-count>0 kasus</span>
+            </div>
+
+            <div class="filter-bar">
+              <label class="form-field" for="filter-disc-type">
+                <span class="form-label">Jenis Selisih</span>
+                <select class="select" id="filter-disc-type" data-filter-discrepancy-type data-discrepancy-filter></select>
+              </label>
+              <label class="form-field" for="filter-disc-status">
+                <span class="form-label">Status</span>
+                <select class="select" id="filter-disc-status" data-filter-discrepancy-status data-discrepancy-filter>
+                  <option value="">Semua Status</option>
+                  <option value="Open">Open</option>
+                  <option value="Dalam Investigasi">Dalam Investigasi</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </label>
+              <label class="form-field" for="filter-disc-date">
+                <span class="form-label">Tanggal</span>
+                <input class="input" id="filter-disc-date" type="date" data-filter-discrepancy-date data-discrepancy-filter>
+              </label>
+              <div></div>
+              <div></div>
+              <button class="button button-secondary" type="button" data-reset-discrepancy-filters>Reset</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table-data">
+                <thead>
+                  <tr>
+                    <th>No. Kasus</th>
+                    <th>Jenis Selisih</th>
+                    <th>Referensi</th>
+                    <th class="text-right">Besar Selisih</th>
+                    <th>Status</th>
+                    <th>Prioritas</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody data-discrepancy-table></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
